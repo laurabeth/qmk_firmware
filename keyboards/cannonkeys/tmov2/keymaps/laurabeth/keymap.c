@@ -35,10 +35,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_GAMING] = LAYOUT_default(
-		KC_HOME, KC_TAB,  KC_Q,    KC_W,    KC_E,   KC_R, KC_T,  KC_Y, KC_U, KC_I, KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_DEL,
-		KC_END,  KC_ESC,           KC_A,    KC_S,   KC_D, KC_F,  KC_G, KC_H, KC_J, KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_BSLS,
-		KC_PGUP, KC_LSFT, KC_LSFT, KC_Z,    KC_X,   KC_C, KC_V,  KC_B, KC_N, KC_M, KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, KC_RSFT,
-		KC_PGDN,                   KC_LCTL, KC_LALT,      KC_SPC,KC_ENT,           KC_RGUI, MO(_RAISE)
+		KC_HOME, KC_TAB,  KC_Q,    KC_W,    KC_E,   KC_R, KC_T,  KC_Y, KC_U, KC_I, KC_O,    KC_P,    KC_LBRC, KC_RBRC,     KC_BSPC,
+		KC_END,  KC_ESC,           KC_A,    KC_S,   KC_D, KC_F,  KC_G, KC_H, KC_J, KC_K,    KC_L,    KC_SCLN, KC_QUOT,     KC_BSLS,
+		KC_PGUP, KC_LSFT, KC_LSFT, KC_Z,    KC_X,   KC_C, KC_V,  KC_B, KC_N, KC_M, KC_COMM, KC_DOT,  KC_SLSH, MO(_NAVIGATE), MO(_NAVIGATE),
+		KC_PGDN,                   KC_LCTL, MO(_RAISE),   KC_SPC,KC_ENT,           KC_RGUI, KC_RALT
     ),
 
     [_RAISE] = LAYOUT_default(
@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NAVIGATE] = LAYOUT_default(
-		KC_NO, KC_NO, DF(_QWERTY),  KC_NO, KC_NO, RESET, KC_NO,        KC_NO, KC_NO,   KC_UP,   KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO,
+		KC_NO, KC_NO, DF(_QWERTY),  KC_NO, KC_NO, RESET, KC_NO,        KC_NO, KC_NO,   KC_UP,   KC_NO,    KC_NO, KC_NO, KC_NO, DEBUG,
 		KC_NO, KC_NO, KC_NO,        KC_NO, KC_NO, KC_NO, DF(_GAMING),  KC_NO, KC_LEFT, KC_DOWN, KC_RIGHT, KC_NO, KC_NO, KC_NO,
 		KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,        KC_NO, KC_NO,   KC_NO,   KC_NO,    KC_NO, KC_NO, KC_NO,
 		KC_NO,        KC_NO, KC_NO,        KC_NO, KC_NO,               KC_NO, KC_NO
