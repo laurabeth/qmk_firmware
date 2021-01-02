@@ -25,14 +25,14 @@ enum elise_keycodes {
 // Right shift on hold, forward slash on tap
 #define SFT_SLS MT(MOD_RSFT, KC_SLSH)
 // Nav layer on hold, esc on tap
-#define ESC_NAV LT(_NAVIGATE, KC_ESC)
+#define TAB_NAV LT(_NAVIGATE, KC_TAB)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
-		ESC_NAV,   KC_Q,     KC_W,     KC_E,   KC_R,    KC_T,         KC_Y,     KC_U,     KC_I, KC_O,    KC_P,    KC_DEL, KC_BSPC,
-		ESC_TAB,  KC_A,     KC_S,     KC_D,   KC_F,    KC_G,          KC_H,     KC_J,     KC_K, KC_L,    KC_SCLN, KC_QUOT,
-		KC_LSFT,  KC_Z,     KC_X,     KC_C,   KC_V,    KC_B,          KC_B,     KC_N,     KC_M, KC_COMM, KC_DOT,  SFT_SLS, SFT_SLS,
-		KC_LCTL,  KC_LALT,                    KC_NO,   ENT_LOW,	      SPC_UPR,  KC_RGUI,                          KC_RALT, KC_RCTL
+		KC_ESC,   KC_Q,     KC_W,     KC_E,   KC_R,    KC_T,          KC_Y,   KC_U,     KC_I, KC_O,    KC_P,    KC_DEL, KC_BSPC,
+		TAB_NAV,  KC_A,     KC_S,     KC_D,   KC_F,    KC_G,          KC_H,   KC_J,     KC_K, KC_L,    KC_SCLN, KC_QUOT,
+		KC_LSFT,  KC_Z,     KC_X,     KC_C,   KC_V,    KC_B,          KC_B,   KC_N,     KC_M, KC_COMM, KC_DOT,  SFT_SLS, SFT_SLS,
+		KC_LCTL,  KC_LALT,                    KC_NO,   LOWER,	      RAISE,  KC_RGUI,                          KC_RALT, KC_RCTL
     ),
 
     [_GAMING] = LAYOUT(
@@ -109,12 +109,44 @@ void led_set_user(uint8_t usb_led) {
 }
 
 //function for layer indicator LED
-layer_state_t layer_state_set_user(layer_state_t state)
-{
+layer_state_t layer_state_set_user(layer_state_t state) {
     if (get_highest_layer(state) == 1) {
     writePinHigh(B3);
 	} else {
 		writePinLow(B3);
     }
     return state;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    static uint16_t timer;
+    switch(keycode) {
+        case LOWER:
+            if (record->event.pressed) {
+                timer = timer_read();
+                layer_on(_LOWER);
+                update_tri_layer_state(_LOWER, _RAISE, _ADJUST);
+            } else {
+                layer_off(_LOWER);
+                update_tri_layer_state(_LOWER, _RAISE, _ADJUST);
+                if(timer_elapsed(timer) < TAPPING_TERM){
+                    register_code(KC_SPC);
+                }
+            }
+            return false;
+        case RAISE:
+            if (record->event.pressed) {
+                timer = timer_read();
+                layer_on(_RAISE);
+                update_tri_layer_state(_LOWER, _RAISE, _ADJUST);
+            } else {
+                layer_off(_RAISE);
+                update_tri_layer_state(_LOWER, _RAISE, _ADJUST);
+                if(timer_elapsed(timer) < TAPPING_TERM){
+                    register_code(KC_ENT);
+                }
+            }
+            return false;
+    }
+    return true;
 }
