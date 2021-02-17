@@ -3,14 +3,23 @@
 
 #include QMK_KEYBOARD_H
 
-enum custom_layers {
+enum dimple_layers {
 	_QWERTY,
+    _GAMING,
 	_LOWER,
 	_RAISE,
     _NAVIGATE,
 	_ADJUST,
-    _GAMING,
 };
+
+enum dimple_keycodes {
+    QWERTY,
+    GAMING,
+    LOWER,
+    RAISE,
+    NAVIGATE,
+    ADJUST
+}
 
 // Combination codes
 #define ENT_LOW LT(_LOWER, KC_ENT)
