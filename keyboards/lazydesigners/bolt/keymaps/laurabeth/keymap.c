@@ -46,6 +46,7 @@ enum bolt_keycodes {
 #define ADJUST MO(_ADJUST)
 #define NAV MO(_NAVIGATE)
 #define RAISE MO(_RAISE)
+#define LOWER MO(_LOWER)
 
 //Layer toggle
 #define T_GMNG DF(_GAMING)
@@ -65,10 +66,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                KC_LCTL,  KC_LALT,                   RAISE,      KC_SPC,          KC_ENT, NAV,                        KC_HOME, KC_END,  KC_PSCR
              ),
     [_LOWER] = LAYOUT(
-               KC_GRV,   KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,
-               KC_INS,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
-               KC_CAPS,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,           KC_F12,  KC_F12,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-               KC_NO,    KC_NO,                     KC_NO,   KC_TRNS,          KC_TRNS, KC_NO,                     KC_NO,   KC_NO,   KC_NO
+               KC_GRV,   KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                    KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,
+               KC_NO,    KC_PLUS, KC_EQL,  KC_MINS, KC_UNDS, KC_PIPE,                    KC_TRNS, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR, KC_BSLS,
+               KC_CAPS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,           KC_F12,  KC_F12,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_PGUP,
+               KC_NO,    KC_NO,                     KC_NO,   KC_TRNS,           KC_TRNS, KC_NO,                     KC_NO,   KC_NO,   KC_PGDN
              ),
     [_RAISE] = LAYOUT(
                KC_NO,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
