@@ -37,7 +37,7 @@ enum cajal_keycodes {
 
 //Layer toggle
 #define T_GMNG DF(_GAMING)
-#define T_MAC(_MAC)
+#define T_MAC DF(_MAC)
 #define T_QWRT DF(_QWERTY)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -116,7 +116,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
-        if(LAYER_IS_ON(_MAC)) {
+        if(IS_LAYER_ON(_MAC)) {
             if (clockwise) {
                 tap_code(KC_AGIN);
             } else {
